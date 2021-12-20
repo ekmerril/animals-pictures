@@ -1,0 +1,14 @@
+extend type Animal @key(fields: "id") {
+    id: ID! @external
+    commonName: String @external
+    class: String @external
+    habitats: [String] @external
+    countries: [String] @external
+    foods: [String] @external
+    picture: Picture
+}
+
+type Picture {
+    filename: String!
+    url: String!
+}

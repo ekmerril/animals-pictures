@@ -1,0 +1,29 @@
+{
+  "name": "animals-pictures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekmerril/animals-pictures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ekmerril/animals-pictures/issues"
+  },
+  "homepage": "https://github.com/ekmerril/animals-pictures#readme",
+  "dependencies": {
+    "@apollo/federation": "^0.33.8",
+    "@graphql-tools/graphql-file-loader": "^7.3.3",
+    "@graphql-tools/load": "^7.5.0",
+    "@graphql-tools/schema": "^8.3.1",
+    "apollo-server": "^3.5.0",
+    "axios": "^0.24.0",
+    "path": "^0.12.7"
+  }
+}
