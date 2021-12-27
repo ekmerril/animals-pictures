@@ -1,11 +1,17 @@
 const axios = require("axios");
+const dotenv = require("dotenv")
 
-const searchConfig = require("dotenv").config({ path: "config/search.env" });
+// First, make sure we have a .env file that holds our private Google creds for earching
+const searchConfig = dotenv.config({ path: "config/search.env" });
 if (searchConfig.error) {
-  console.log("ERROR: missing config/search.env file that must contain Google Search parameters")
-  process.exit()
+  console.log(
+    "ERROR: missing config/search.env file that must contain Google Search parameters"
+  );
+  process.exit();
 }
 
+// Go to our Google custom search engine (CSE) and ask for images. Return them all (up to 10 it seems)
+// Returning them all allows the client to refresh if they get a weird or inapplicable image (like diagram)
 async function getAnimalPics(animalName) {
   var finalImages = [];
   await axios
@@ -22,7 +28,7 @@ async function getAnimalPics(animalName) {
     .then((res) => {
       var results = res.data.items;
       if (results.length > 0) {
-        results.forEach(function (item, index, array) {
+        results.forEach(function (item) {
           if (item.link) {
             finalImageUrl = item.link;
           }
