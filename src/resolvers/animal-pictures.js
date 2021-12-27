@@ -1,10 +1,17 @@
 const axios = require("axios");
+const searchConfig = require("dotenv").config({ path: "../..config/search.env" });
 
 async function getAnimalPics(animalName) {
   var finalImages = [];
   await axios
     .get(
-      "https://customsearch.googleapis.com/customsearch/v1?searchType=image&imgSize=large&key=AIzaSyBFDHBga7FTKUVTgbW-L69HZmBAi6Q95aA&cx=5c89643ee7e674541&q=" +
+      "https://customsearch.googleapis.com/customsearch/v1?searchType=image&imgSize=" +
+        searchConfig.parsed.GOOGLE_SEARCH_IMAGE_SIZE +
+        "&key=" +
+        searchConfig.parsed.GOOGLE_SEARCH_KEY +
+        "&cx=" +
+        searchConfig.parsed.GOOGLE_SEARCH_APP_ID +
+        "&q=" +
         animalName
     )
     .then((res) => {
