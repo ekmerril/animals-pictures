@@ -1,5 +1,10 @@
 const axios = require("axios");
-const searchConfig = require("dotenv").config({ path: "../..config/search.env" });
+
+const searchConfig = require("dotenv").config({ path: "config/search.env" });
+if (searchConfig.error) {
+  console.log("ERROR: missing config/search.env file that must contain Google Search parameters")
+  process.exit()
+}
 
 async function getAnimalPics(animalName) {
   var finalImages = [];
