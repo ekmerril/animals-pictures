@@ -3,7 +3,7 @@ const { gql } = require("apollo-server");
 const animalTypeDefs = gql`
   extend type Animal @key(fields: "ID") {
     ID: String! @external
-    picture: Picture
+    pictures: [Picture]
   }
 
   type Picture {

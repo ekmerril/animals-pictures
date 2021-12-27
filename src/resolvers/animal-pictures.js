@@ -1,35 +1,34 @@
 const axios = require("axios");
 
-async function getAnimalPic(animalName) {
-  var finalImage = undefined;
+async function getAnimalPics(animalName) {
+  var finalImages = [];
   await axios
     .get(
-      "https://customsearch.googleapis.com/customsearch/v1?searchType=image&key=AIzaSyBFDHBga7FTKUVTgbW-L69HZmBAi6Q95aA&cx=5c89643ee7e674541&q=" +
+      "https://customsearch.googleapis.com/customsearch/v1?searchType=image&imgSize=large&key=AIzaSyBFDHBga7FTKUVTgbW-L69HZmBAi6Q95aA&cx=5c89643ee7e674541&q=" +
         animalName
     )
     .then((res) => {
       var results = res.data.items;
       if (results.length > 0) {
-        var firstResult = results[0];
-        if (firstResult.link) {
-          finalImageUrl = firstResult.link;
-        }
+        results.forEach(function (item, index, array) {
+          if (item.link) {
+            finalImageUrl = item.link;
+          }
+          finalImages.push({ url: finalImageUrl });
+        });
       }
-      finalImage = { url: finalImageUrl };
     })
     .catch(function (error) {
       console.log(error);
     });
 
-  return finalImage;
+  return finalImages;
 }
-
-// class Animal {}
 
 module.exports.resolvers = {
   Animal: {
-    picture(animal) {
-      return getAnimalPic(animal.ID);
+    pictures(animal) {
+      return getAnimalPics(animal.ID);
     },
   },
 };
