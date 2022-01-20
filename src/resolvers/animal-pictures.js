@@ -49,4 +49,9 @@ module.exports.resolvers = {
       return getAnimalPics(animal.ID);
     },
   },
+  TaxMember: {
+    pictures(member) {
+      return getAnimalPics(member.name);
+    },
+  },
 };

@@ -6,6 +6,11 @@ const animalTypeDefs = gql`
     pictures: [Picture]
   }
 
+  extend type TaxMember @key(fields: "name") {
+    name: String! @external
+    pictures: [Picture]
+  }
+
   type Picture {
     url: String
   }
